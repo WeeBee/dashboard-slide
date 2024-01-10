@@ -1,6 +1,6 @@
 # *********************** #
 # *** Dashboard Slide *** #
-# 2023, Wilson Pereira Jr #
+# 2024, Wilson Pereira Jr #
 # *********************** #
 import os
 import time
@@ -10,22 +10,26 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 logging.basicConfig(filename='dashboard.log', level=logging.ERROR, format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger(__name__)
-print('\n*** WeeBee Dashboard 2023 ***\n')
+print('\n*** WeeBee Dashboard 2024 ***\n')
 print('Web Driver: ' + str(os.popen('where.exe chromedriver.exe', 'r').read()))
 print(str(os.popen('chromedriver.exe --version', 'r').read()))
 options = Options()
 options.add_argument("--start-fullscreen")
+options.add_argument("force-device-scale-factor=0.75")
+options.add_argument("high-dpi-support=0.75")
 options.add_experimental_option("excludeSwitches", ['enable-automation'])
+prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
+options.add_experimental_option("prefs", prefs)
 driver = webdriver.Chrome(options)
 usrGrafana = os.environ.get('USR_GRAFANA')
 pwdGrafana = os.environ.get('PWD_GRAFANA')
 usrSplunk = os.environ.get('USR_SPLUNK')
 pwdSplunk = os.environ.get('PWD_SPLUNK')
 #seconds to wait on each domain:
-SPLUNK = 30
-POWERBI = 58
-GRAFANA = 59
-DYNATRACE = 60
+SPLUNK = 3
+POWERBI = 4
+GRAFANA = 5
+DYNATRACE = 6
 urls = {
 	"https://www.google.com":DYNATRACE,
 	"https://www.microsoft.com":GRAFANA,
