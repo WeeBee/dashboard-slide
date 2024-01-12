@@ -37,7 +37,7 @@ urls = {
 	"https://www.amazon.com":POWERBI
 }
 
-def loginGrafana():
+def login_grafana():
 	try:
 		driver.find_element("name", "user").send_keys(usr_grafana)
 		wait(1)
@@ -47,7 +47,7 @@ def loginGrafana():
 		wait(1)
 	except Exception:
 		pass
-def loginSplunk():
+def login_splunk():
 	try:
 		driver.find_element("id", "username").send_keys(usr_splunk)
 		wait(1)
@@ -61,7 +61,7 @@ def wait(secs):
 		time.sleep(secs)
 	except Exception:
 		time.sleep(60)
-def zoomOut():
+def zoom_out():
 	driver.execute_script("document.body.style.zoom='0.5'")
 
 # main
@@ -70,12 +70,12 @@ try:
 		for k,v in urls.items():
 			driver.get(k)
 			if v == SPLUNK:
-				loginSplunk()
+				login_splunk()
 			elif v == GRAFANA:
-				loginGrafana()
-				zoomOut()
+				login_grafana()
+				zoom_out()
 			elif v == DYNATRACE:
-				zoomOut()
+				zoom_out()
 			driver.execute_script("document.body.style.cursor='none'")
 			wait(v)
 except KeyboardInterrupt:
