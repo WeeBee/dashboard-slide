@@ -21,10 +21,10 @@ options.add_experimental_option("excludeSwitches", ['enable-automation'])
 prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
 options.add_experimental_option("prefs", prefs)
 driver = webdriver.Chrome(options)
-usrGrafana = os.environ.get('USR_GRAFANA')
-pwdGrafana = os.environ.get('PWD_GRAFANA')
-usrSplunk = os.environ.get('USR_SPLUNK')
-pwdSplunk = os.environ.get('PWD_SPLUNK')
+usr_grafana = os.environ.get('USR_GRAFANA')
+pwd_grafana = os.environ.get('PWD_GRAFANA')
+usr_splunk = os.environ.get('USR_SPLUNK')
+pwd_splunk = os.environ.get('PWD_SPLUNK')
 #seconds to wait on each domain:
 SPLUNK = 3
 POWERBI = 4
@@ -39,9 +39,9 @@ urls = {
 
 def loginGrafana():
 	try:
-		driver.find_element("name", "user").send_keys(usrGrafana)
+		driver.find_element("name", "user").send_keys(usr_grafana)
 		wait(1)
-		driver.find_element("name", "password").send_keys(pwdGrafana)
+		driver.find_element("name", "password").send_keys(pwd_grafana)
 		wait(1)
 		driver.find_element(By.XPATH, '//*[@id="reactRoot"]/div[1]/main/div[3]/div/div[2]/div/div/form/button').click()
 		wait(1)
@@ -49,9 +49,9 @@ def loginGrafana():
 		pass
 def loginSplunk():
 	try:
-		driver.find_element("id", "username").send_keys(usrSplunk)
+		driver.find_element("id", "username").send_keys(usr_splunk)
 		wait(1)
-		driver.find_element("id", "password").send_keys(pwdSplunk)
+		driver.find_element("id", "password").send_keys(pwd_splunk)
 		wait(1)
 		driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[1]/form/fieldset/input[1]").click()
 	except Exception:
@@ -82,3 +82,4 @@ except KeyboardInterrupt:
 	driver.close()
 except Exception as err:
 	logger.error(err)
+
